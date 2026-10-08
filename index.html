@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -736,7 +737,6 @@ body {
 </style>
 </head>
 
-
 <body>
 
 
@@ -783,6 +783,18 @@ body {
 ========================= -->
 
 <div class="lyrics">
+
+    <div class="line">
+        You know it's true
+    </div>
+
+    <div class="line">
+        Yeah, I miss you
+    </div>
+
+    <div class="line">
+        You know it's true
+    </div>
 
     <div class="line">
         So, what if I call
@@ -865,51 +877,66 @@ const lines =
 ========================= */
 
 /*
-    These are starting estimates.
+    These timestamps are starting estimates.
 
-    Change the "time" values to match
-    your specific audio file.
+    Adjust them if your audio has
+    slightly different timing.
 */
 
 const lyrics = [
 
     {
         time: 0,
+        text: "You know it's true"
+    },
+
+    {
+        time: 4,
+        text: "Yeah, I miss you"
+    },
+
+    {
+        time: 8,
+        text: "You know it's true"
+    },
+
+    {
+        time: 12,
         text: "So, what if I call"
     },
 
     {
-        time: 5,
+        time: 17,
         text: "And you pick up the phone?"
     },
 
     {
-        time: 10,
+        time: 22,
         text: "And I use this holiday to make my way to your ghost"
     },
 
     {
-        time: 18,
+        time: 30,
         text: "Oh, what if you're lonely"
     },
 
     {
-        time: 23,
+        time: 35,
         text: "And you know I am too?"
     },
 
     {
-        time: 28,
+        time: 40,
         text: "And I get the chance to say"
     },
 
     {
-        time: 34,
+        time: 45,
         text: "\"Merry Christmas, I miss you\""
     },
 
     {
-        time: 43,
+        time: 53,
         text: "I miss you"
     }
 
@@ -943,9 +970,7 @@ function showLyric(index) {
     line.style.display = "block";
 
 
-    /*
-        Restart the animation
-    */
+    /* Restart animation */
 
     line.style.animation = "none";
 
@@ -993,11 +1018,6 @@ music.addEventListener(
 
         }
 
-
-        /*
-            Only change the lyric
-            once.
-        */
 
         if (
             lyricIndex !==
@@ -1138,3 +1158,4 @@ for (
 
 </body>
 </html>
+```
