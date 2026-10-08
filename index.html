@@ -48,9 +48,21 @@ body {
     inset: 0;
 
     background-image:
-        radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,255,255,.5) .8px, transparent 1.3px);
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.9) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.7) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.5) .8px,
+            transparent 1.3px
+        );
 
     background-size:
         150px 150px,
@@ -64,7 +76,8 @@ body {
 
     opacity: .5;
 
-    animation: starMove 18s ease-in-out infinite alternate;
+    animation:
+        starMove 18s ease-in-out infinite alternate;
 }
 
 @keyframes starMove {
@@ -134,7 +147,8 @@ body {
         0 0 25px rgba(255,255,230,.3),
         0 0 80px rgba(190,205,255,.12);
 
-    animation: moonFloat 8s ease-in-out infinite alternate;
+    animation:
+        moonFloat 8s ease-in-out infinite alternate;
 }
 
 @keyframes moonFloat {
@@ -164,6 +178,7 @@ body {
 .moon::before {
     width: 30px;
     height: 30px;
+
     left: 30px;
     top: 35px;
 }
@@ -171,13 +186,14 @@ body {
 .moon::after {
     width: 20px;
     height: 20px;
+
     right: 28px;
     bottom: 35px;
 }
 
 
 /* =========================
-   DISTANT MOUNTAINS
+   MOUNTAINS
 ========================= */
 
 .mountain-back {
@@ -190,6 +206,7 @@ body {
     height: 35%;
 
     background:
+
         linear-gradient(
             135deg,
             transparent 49%,
@@ -221,6 +238,7 @@ body {
     height: 27%;
 
     background:
+
         linear-gradient(
             135deg,
             transparent 49%,
@@ -335,6 +353,7 @@ body {
     height: 43px;
 
     background:
+
         linear-gradient(
             90deg,
             transparent 47%,
@@ -342,6 +361,7 @@ body {
             #5e3b18 53%,
             transparent 54%
         ),
+
         linear-gradient(
             0deg,
             transparent 47%,
@@ -349,13 +369,15 @@ body {
             #5e3b18 53%,
             transparent 54%
         ),
+
         #e4a349;
 
     box-shadow:
         0 0 15px #e4a349,
         0 0 45px rgba(255,170,60,.35);
 
-    animation: warmLight 3s ease-in-out infinite alternate;
+    animation:
+        warmLight 3s ease-in-out infinite alternate;
 }
 
 .window.one {
@@ -423,7 +445,9 @@ body {
     border-bottom: 115px solid #050d15;
 
     filter:
-        drop-shadow(0 12px 15px rgba(0,0,0,.5));
+        drop-shadow(
+            0 12px 15px rgba(0,0,0,.5)
+        );
 }
 
 .tree::before {
@@ -567,9 +591,6 @@ body {
     text-shadow:
         0 2px 10px rgba(0,0,0,.9),
         0 0 25px rgba(255,255,255,.08);
-
-    animation:
-        lyricAppear 5s ease-in-out forwards;
 }
 
 @keyframes lyricAppear {
@@ -695,7 +716,6 @@ body {
     position: fixed;
 
     bottom: 25px;
-
     left: 0;
 
     width: 100%;
@@ -803,7 +823,7 @@ body {
      MUSIC
 ========================= -->
 
-<audio id="music" loop preload="auto">
+<audio id="music" preload="auto">
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -818,62 +838,13 @@ body {
 
 <div class="vignette"></div>
 
+
 <div class="title">
     MERRY CHRISTMAS, I MISS YOU
 </div>
 
 
 <script>
-
-/* =========================
-   LYRICS
-========================= */
-
-const lines =
-    document.querySelectorAll(".line");
-
-let current = 0;
-
-const lyricDuration = 5000;
-
-function showLyric(index) {
-
-    lines.forEach(line => {
-        line.style.display = "none";
-    });
-
-    const line = lines[index];
-
-    line.style.display = "block";
-
-    /*
-        Force animation restart
-    */
-    void line.offsetWidth;
-
-    line.style.animation = "none";
-
-    void line.offsetWidth;
-
-    line.style.animation =
-        "lyricAppear 5s ease-in-out forwards";
-}
-
-function nextLyric() {
-
-    showLyric(current);
-
-    current++;
-
-    if (current >= lines.length) {
-        current = 0;
-    }
-}
-
-showLyric(0);
-
-setInterval(nextLyric, lyricDuration);
-
 
 /* =========================
    MUSIC
@@ -885,57 +856,282 @@ const music =
 const musicButton =
     document.getElementById("musicButton");
 
+const lines =
+    document.querySelectorAll(".line");
 
-musicButton.addEventListener("click", () => {
 
-    if (music.paused) {
+/* =========================
+   LYRIC TIMINGS
+========================= */
 
-        music.play();
+/*
+    These are starting estimates.
 
-        musicButton.textContent = "❚❚";
+    Change the "time" values to match
+    your specific audio file.
+*/
 
-    } else {
+const lyrics = [
 
-        music.pause();
+    {
+        time: 0,
+        text: "So, what if I call"
+    },
 
-        musicButton.textContent = "▶";
+    {
+        time: 5,
+        text: "And you pick up the phone?"
+    },
 
+    {
+        time: 10,
+        text: "And I use this holiday to make my way to your ghost"
+    },
+
+    {
+        time: 18,
+        text: "Oh, what if you're lonely"
+    },
+
+    {
+        time: 23,
+        text: "And you know I am too?"
+    },
+
+    {
+        time: 28,
+        text: "And I get the chance to say"
+    },
+
+    {
+        time: 34,
+        text: "\"Merry Christmas, I miss you\""
+    },
+
+    {
+        time: 43,
+        text: "I miss you"
     }
 
-});
+];
+
+
+let currentLyric = -1;
+
+
+/* =========================
+   SHOW LYRIC
+========================= */
+
+function showLyric(index) {
+
+    lines.forEach(line => {
+
+        line.style.display = "none";
+
+    });
+
+
+    if (index < 0) {
+        return;
+    }
+
+
+    const line = lines[index];
+
+
+    line.style.display = "block";
+
+
+    /*
+        Restart the animation
+    */
+
+    line.style.animation = "none";
+
+    void line.offsetWidth;
+
+    line.style.animation =
+        "lyricAppear 5s ease-in-out forwards";
+
+}
+
+
+/* =========================
+   SYNC LYRICS WITH MUSIC
+========================= */
+
+music.addEventListener(
+    "timeupdate",
+    () => {
+
+        const time =
+            music.currentTime;
+
+
+        let lyricIndex = -1;
+
+
+        for (
+            let i = 0;
+            i < lyrics.length;
+            i++
+        ) {
+
+            if (
+                time >=
+                lyrics[i].time
+            ) {
+
+                lyricIndex = i;
+
+            } else {
+
+                break;
+
+            }
+
+        }
+
+
+        /*
+            Only change the lyric
+            once.
+        */
+
+        if (
+            lyricIndex !==
+            currentLyric
+        ) {
+
+            currentLyric =
+                lyricIndex;
+
+            showLyric(
+                currentLyric
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   PLAY / PAUSE
+========================= */
+
+musicButton.addEventListener(
+    "click",
+    async () => {
+
+        if (music.paused) {
+
+            try {
+
+                await music.play();
+
+                musicButton.textContent =
+                    "❚❚";
+
+            } catch (error) {
+
+                console.log(
+                    "Music error:",
+                    error
+                );
+
+            }
+
+        } else {
+
+            music.pause();
+
+            musicButton.textContent =
+                "▶";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   SONG ENDED
+========================= */
+
+music.addEventListener(
+    "ended",
+    () => {
+
+        currentLyric = -1;
+
+
+        lines.forEach(line => {
+
+            line.style.display =
+                "none";
+
+        });
+
+
+        musicButton.textContent =
+            "▶";
+
+    }
+);
 
 
 /* =========================
    SNOW
 ========================= */
 
-for (let i = 0; i < 110; i++) {
+for (
+    let i = 0;
+    i < 110;
+    i++
+) {
 
     const snow =
         document.createElement("div");
 
-    snow.className = "snow";
+
+    snow.className =
+        "snow";
+
 
     snow.textContent =
         Math.random() > .45
         ? "•"
         : "✦";
 
+
     snow.style.left =
-        Math.random() * 100 + "vw";
+        Math.random() * 100 +
+        "vw";
+
 
     snow.style.fontSize =
-        3 + Math.random() * 10 + "px";
+        3 +
+        Math.random() * 10 +
+        "px";
+
 
     snow.style.animationDuration =
-        5 + Math.random() * 10 + "s";
+        5 +
+        Math.random() * 10 +
+        "s";
+
 
     snow.style.animationDelay =
-        Math.random() * 8 + "s";
+        Math.random() * 8 +
+        "s";
+
 
     document
         .querySelector(".scene")
         .appendChild(snow);
+
 }
 
 </script>
