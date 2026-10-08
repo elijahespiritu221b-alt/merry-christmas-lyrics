@@ -5,12 +5,6 @@ const lines = document.querySelectorAll(".line");
 
 let current = -1;
 
-
-/* =========================
-   LYRIC TIMINGS
-   Adjust these numbers if needed
-========================= */
-
 const lyrics = [
     { time: 0,  text: "So, what if I call" },
     { time: 5,  text: "And you pick up the phone?" },
@@ -21,11 +15,6 @@ const lyrics = [
     { time: 34, text: "\"Merry Christmas, I miss you\"" },
     { time: 43, text: "I miss you" }
 ];
-
-
-/* =========================
-   SHOW LYRIC
-========================= */
 
 function showLyric(index) {
 
@@ -48,11 +37,6 @@ function showLyric(index) {
     line.style.animation =
         "lyricAppear 5s ease-in-out forwards";
 }
-
-
-/* =========================
-   SYNC LYRICS TO MUSIC
-========================= */
 
 music.addEventListener("timeupdate", () => {
 
@@ -77,11 +61,6 @@ music.addEventListener("timeupdate", () => {
     }
 });
 
-
-/* =========================
-   RESET WHEN SONG RESTARTS
-========================= */
-
 music.addEventListener("ended", () => {
 
     current = -1;
@@ -94,11 +73,6 @@ music.addEventListener("ended", () => {
 
     music.play();
 });
-
-
-/* =========================
-   PLAY / PAUSE BUTTON
-========================= */
 
 musicButton.addEventListener("click", async () => {
 
@@ -123,11 +97,6 @@ musicButton.addEventListener("click", async () => {
         musicButton.textContent = "▶";
     }
 });
-
-
-/* =========================
-   SNOW
-========================= */
 
 for (let i = 0; i < 110; i++) {
 
