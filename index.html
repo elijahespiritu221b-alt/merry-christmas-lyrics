@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Merry Christmas, I Miss You</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #05070d;
+    font-family: Georgia, serif;
+    color: white;
+}
+
+/* =========================
+   SKY
+========================= */
+
+.scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #050713 0%,
+            #101a31 48%,
+            #17263b 72%,
+            #080b11 100%
+        );
+}
+
+/* =========================
+   STARS
+========================= */
+
+.stars {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(circle, white 1px, transparent 1px),
+        radial-gradient(circle, white 1px, transparent 1px),
+        radial-gradient(circle, white 1px, transparent 1px);
+
+    background-size:
+        130px 130px,
+        190px 190px,
+        270px 270px;
+
+    background-position:
+        10px 20px,
+        60px 100px,
+        140px 40px;
+
+    opacity: 0.55;
+
+    animation: stars 12s linear infinite alternate;
+}
+
+@keyframes stars {
+    from {
+        transform: translateY(0);
+        opacity: 0.35;
+    }
+
+    to {
+        transform: translateY(-12px);
+        opacity: 0.7;
+    }
+}
+
+/* =========================
+   MOON
+========================= */
+
+.moon {
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    right: 13%;
+    top: 12%;
+
+    background: #f3f0dc;
+
+    box-shadow:
+        0 0 30px rgba(255,255,220,0.25),
+        0 0 100px rgba(210,220,255,0.12);
+}
+
+.moon::before,
+.moon::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: #d8d7c9;
+
+    opacity: 0.25;
+}
+
+.moon::before {
+    width: 35px;
+    height: 35px;
+
+    left: 35px;
+    top: 45px;
+}
+
+.moon::after {
+    width: 22px;
+    height: 22px;
+
+    right: 35px;
+    bottom: 40px;
+}
+
+/* =========================
+   MOUNTAINS
+========================= */
+
+.mountains {
+    position: absolute;
+
+    bottom: 20%;
+
+    width: 100%;
+    height: 40%;
+
+    background:
+        linear-gradient(135deg,
+            transparent 50%,
+            #0a111d 50%) 0 100% / 45% 100% no-repeat,
+
+        linear-gradient(225deg,
+            transparent 50%,
+            #0a111d 50%) 20% 100% / 55% 100% no-repeat,
+
+        linear-gradient(135deg,
+            transparent 50%,
+            #0c1420 50%) 55% 100% / 55% 100% no-repeat;
+}
+
+/* =========================
+   GROUND
+========================= */
+
+.ground {
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+    height: 32%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #182334 0%,
+            #0b111b 55%,
+            #05070b 100%
+        );
+
+    border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+}
+
+/* =========================
+   CABIN
+========================= */
+
+.cabin {
+    position: absolute;
+
+    bottom: 19%;
+    left: 15%;
+
+    width: 190px;
+    height: 115px;
+
+    background: #11100f;
+
+    border: 2px solid #080808;
+
+    box-shadow:
+        0 0 30px rgba(0,0,0,0.5);
+}
+
+.roof {
+    position: absolute;
+
+    left: -20px;
+    top: -65px;
+
+    width: 0;
+    height: 0;
+
+    border-left: 115px solid transparent;
+    border-right: 115px solid transparent;
+    border-bottom: 70px solid #0b0d12;
+}
+
+.window {
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    top: 30px;
+
+    background: #e9a94d;
+
+    box-shadow:
+        0 0 25px rgba(255,180,60,0.7);
+
+    animation: windowGlow 3s ease-in-out infinite alternate;
+}
+
+.window.one {
+    left: 25px;
+}
+
+.window.two {
+    right: 25px;
+}
+
+@keyframes windowGlow {
+    from {
+        filter: brightness(0.8);
+    }
+
+    to {
+        filter: brightness(1.25);
+    }
+}
+
+.door {
+    position: absolute;
+
+    bottom: 0;
+    left: 75px;
+
+    width: 40px;
+    height: 65px;
+
+    background: #17120f;
+}
+
+/* =========================
+   TREES
+========================= */
+
+.tree {
+    position: absolute;
+
+    bottom: 18%;
+
+    width: 0;
+    height: 0;
+
+    border-left: 45px solid transparent;
+    border-right: 45px solid transparent;
+    border-bottom: 130px solid #071018;
+
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+
+    animation: treeMove 5s ease-in-out infinite alternate;
+}
+
+.tree::after {
+    content: "";
+
+    position: absolute;
+
+    left: -30px;
+    top: 70px;
+
+    width: 60px;
+    height: 90px;
+
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 100px solid #071018;
+}
+
+.tree.one {
+    left: 3%;
+    transform: scale(1.1);
+}
+
+.tree.two {
+    right: 8%;
+    transform: scale(1.4);
+    animation-delay: 1s;
+}
+
+.tree.three {
+    right: 25%;
+    transform: scale(0.75);
+    animation-delay: 2s;
+}
+
+@keyframes treeMove {
+    from {
+        transform: translateX(0) scale(1);
+    }
+
+    to {
+        transform: translateX(5px) scale(1.01);
+    }
+}
+
+/* =========================
+   LYRICS
+========================= */
+
+.lyrics {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    z-index: 10;
+}
+
+.line {
+    position: absolute;
+
+    width: min(900px, 90%);
+
+    opacity: 0;
+
+    transform:
+        translateY(25px)
+        scale(0.96);
+
+    filter: blur(8px);
+
+    font-size: clamp(25px, 4vw, 46px);
+
+    line-height: 1.4;
+
+    text-shadow:
+        0 2px 20px rgba(0,0,0,0.9);
+
+    animation:
+        lyric 5.5s ease-in-out forwards;
+}
+
+@keyframes lyric {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(25px)
+            scale(0.96);
+        filter: blur(8px);
+    }
+
+    15% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+        filter: blur(0);
+    }
+
+    65% {
+        opacity: 1;
+        transform:
+            translateY(-4px)
+            scale(1.01);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-25px)
+            scale(1.04);
+        filter: blur(8px);
+    }
+}
+
+.final {
+    font-size: clamp(40px, 7vw, 75px);
+
+    letter-spacing: 3px;
+}
+
+/* =========================
+   SNOW
+========================= */
+
+.snow {
+    position: absolute;
+
+    top: -20px;
+
+    color: white;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    animation:
+        fall linear infinite,
+        snowOpacity ease-in-out infinite alternate;
+
+    z-index: 15;
+}
+
+@keyframes fall {
+
+    from {
+        transform:
+            translateY(-30px)
+            translateX(0);
+    }
+
+    to {
+        transform:
+            translateY(110vh)
+            translateX(80px);
+    }
+}
+
+@keyframes snowOpacity {
+
+    from {
+        opacity: 0.15;
+    }
+
+    to {
+        opacity: 0.85;
+    }
+}
+
+/* =========================
+   VIGNETTE
+========================= */
+
+.vignette {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse,
+            transparent 40%,
+            rgba(0,0,0,0.6) 100%
+        );
+
+    z-index: 20;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+    position: fixed;
+
+    bottom: 25px;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    opacity: 0.35;
+
+    z-index: 30;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="stars"></div>
+
+    <div class="moon"></div>
+
+    <div class="mountains"></div>
+
+    <div class="ground"></div>
+
+    <div class="tree one"></div>
+    <div class="tree two"></div>
+    <div class="tree three"></div>
+
+    <div class="cabin">
+        <div class="roof"></div>
+
+        <div class="window one"></div>
+        <div class="window two"></div>
+
+        <div class="door"></div>
+    </div>
+
+</div>
+
+
+<div class="lyrics">
+
+    <div class="line">
+        So, what if I call
+    </div>
+
+    <div class="line">
+        And you pick up the phone?
+    </div>
+
+    <div class="line">
+        And I use this holiday to make my way to your ghost
+    </div>
+
+    <div class="line">
+        Oh, what if you're lonely
+    </div>
+
+    <div class="line">
+        And you know I am too?
+    </div>
+
+    <div class="line">
+        And I get the chance to say
+    </div>
+
+    <div class="line">
+        "Merry Christmas, I miss you"
+    </div>
+
+    <div class="line final">
+        I miss you
+    </div>
+
+</div>
+
+
+<div class="vignette"></div>
+
+<div class="title">
+    MERRY CHRISTMAS, I MISS YOU
+</div>
+
+
+<script>
+
+const lines =
+    document.querySelectorAll(".line");
+
+let current = 0;
+
+
+/* Lyrics */
+
+function nextLyric() {
+
+    lines.forEach(line => {
+        line.style.display = "none";
+        line.classList.remove("active");
+    });
+
+    const line = lines[current];
+
+    line.style.display = "block";
+
+    void line.offsetWidth;
+
+    line.classList.add("active");
+
+    current++;
+
+    if (current >= lines.length) {
+        current = 0;
+    }
+}
+
+nextLyric();
+
+setInterval(nextLyric, 5500);
+
+
+/* Snow */
+
+for (let i = 0; i < 100; i++) {
+
+    const snow =
+        document.createElement("div");
+
+    snow.className = "snow";
+
+    snow.textContent =
+        Math.random() > 0.5 ? "•" : "✦";
+
+    snow.style.left =
+        Math.random() * 100 + "vw";
+
+    snow.style.fontSize =
+        3 + Math.random() * 11 + "px";
+
+    snow.style.animationDuration =
+        5 + Math.random() * 9 + "s";
+
+    snow.style.animationDelay =
+        Math.random() * 10 + "s";
+
+    document.querySelector(".scene")
+        .appendChild(snow);
+}
+
+</script>
+
+</body>
+</html>
